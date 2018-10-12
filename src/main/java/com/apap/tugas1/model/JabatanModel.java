@@ -1,4 +1,4 @@
 package com.apap.tugas1.model;
 
-public class EmployeeModel {
+public class JabatanModel {
 }
