@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+    <h3>Sistem Informasi Kepegawaian</h3>
+    <p>Selamat datang di Sistem Informasi Kepegawaian</p>
+    <hr>
+    <h1>Lihat Data Pegawai Berdasarkan NIP</h1>
+    <p>Masukkan Nomor Induk Pegawai</p>
+    <form th:action="@{/pegawai}" method="GET">
+        <input type="text"/>
+        <button type="submit">Lihat</button>
+    </form>
+</body>
+</html>
