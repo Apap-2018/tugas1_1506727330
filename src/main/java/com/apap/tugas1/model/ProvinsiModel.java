@@ -7,7 +7,8 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "provinsi")
-public class Provinsi implements Serializable {
+public class ProvinsiModel implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,5 +21,4 @@ public class Provinsi implements Serializable {
     @NotNull
     @Column(name = "presentase_tunjangan", nullable = false)
     private double presentaseTunjangan;
-
 }
