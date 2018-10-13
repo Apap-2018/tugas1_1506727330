@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PegawaiService {
-    Optional<PegawaiModel> getPegawaiDetailById(Long id);
+    Optional<PegawaiModel> getPegawaiDetailByNip(String nip);
     void addPegawai(PegawaiModel pegawai);
     List<PegawaiModel> getAllPegawai();
 }

@@ -17,8 +17,8 @@ public class PegawaiServiceImpl implements  PegawaiService{
     private PegawaiDb pegawaiDb;
 
     @Override
-    public Optional<PegawaiModel> getPegawaiDetailById(Long id){
-        return  pegawaiDb.findById(id);
+    public Optional<PegawaiModel> getPegawaiDetailByNip(String nip){
+        return  pegawaiDb.findByNip(nip);
     }
 
     @Override

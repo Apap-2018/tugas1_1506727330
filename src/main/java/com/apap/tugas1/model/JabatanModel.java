@@ -17,6 +17,22 @@ public class JabatanModel {
     @Column(name = "nama", nullable = false)
     private String nama;
 
+    public long getId() {
+        return id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public Double getGajiPokok() {
+        return gajiPokok;
+    }
+
     @NotNull
     @Size(max = 255)
     @Column(name = "deskripsi", nullable = false)

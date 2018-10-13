@@ -23,4 +23,15 @@ public class JabatanPegawaiModel {
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private JabatanModel jabatan;
 
+    public long getId() {
+        return id;
+    }
+
+    public PegawaiModel getPegawai() {
+        return pegawai;
+    }
+
+    public JabatanModel getJabatan() {
+        return jabatan;
+    }
 }

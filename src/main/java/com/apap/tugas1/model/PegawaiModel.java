@@ -18,6 +18,34 @@ public class PegawaiModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    public long getId() {
+        return id;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getTempatLahir() {
+        return tempatLahir;
+    }
+
+    public Date getTanggalLahir() {
+        return tanggalLahir;
+    }
+
+    public String getTahunMasuk() {
+        return tahunMasuk;
+    }
+
+    public InstansiModel getInstansi() {
+        return instansi;
+    }
+
     @NotNull
     @Size(max = 255)
     @Column(name = "nip", nullable = false, unique = true)

@@ -16,6 +16,22 @@ public class InstansiModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    public long getId() {
+        return id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public ProvinsiModel getProvinsi() {
+        return provinsi;
+    }
+
     @NotNull
     @Size(max = 255)
     @Column(name = "nama", nullable = false)
