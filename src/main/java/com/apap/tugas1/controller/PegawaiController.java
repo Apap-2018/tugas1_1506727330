@@ -47,4 +47,9 @@ public class PegawaiController {
         return "pegawai";
     }
 
+    @RequestMapping(value = "/pegawai/tambah")
+    private String addPegawai(){
+        return "add-pegawai";
+    }
+
 }
