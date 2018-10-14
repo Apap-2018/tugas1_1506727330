@@ -21,4 +21,16 @@ public class ProvinsiModel implements Serializable {
     @NotNull
     @Column(name = "presentase_tunjangan", nullable = false)
     private double presentaseTunjangan;
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public double getPresentaseTunjangan() {
+        return presentaseTunjangan;
+    }
 }

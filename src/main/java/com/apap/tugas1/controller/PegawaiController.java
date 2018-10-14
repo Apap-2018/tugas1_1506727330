@@ -33,13 +33,17 @@ public class PegawaiController {
     private String getPegawai(@RequestParam(value = "nip") String nipPegawai, Model model){
         PegawaiModel pegawai = pegawaiService.getPegawaiDetailByNip(nipPegawai).get();
         List<JabatanPegawaiModel> ListJabatanPegawai = jabatanPegawaiService.getJabatanByNip(nipPegawai).get();
-        Double gaji = 0.0;
+        double gaji = 0.0;
         for (JabatanPegawaiModel jabatanPegawai : ListJabatanPegawai) {
-            gaji += jabatanPegawai.getJabatan().getGajiPokok();
+            double tempGaji = jabatanPegawai.getJabatan().getGajiPokok();
+            if (tempGaji > gaji){
+                gaji = tempGaji;
+            }
         }
+        gaji += pegawai.getInstansi().getProvinsi().getPresentaseTunjangan()/100 * gaji;
         model.addAttribute("pegawai",pegawai);
         model.addAttribute("listJabatanPegawai",ListJabatanPegawai);
-        model.addAttribute("gaji",gaji);
+        model.addAttribute("gaji",(long)gaji);
         return "pegawai";
     }
 
