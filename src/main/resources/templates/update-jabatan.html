@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Jabatan</title>
+</head>
+<body>
+    <h1>Ubah Jabatan</h1>
+    <form th:action="@{/jabatan/ubah}" th:object="${jabatan}" method="POST">
+        <input type="hidden" th:value="*{id}" name="id">
+        <table>
+            <tr>
+                <td>Nama</td>
+                <td>
+                    <input type="text" th:value="*{nama}" name="nama">
+                </td>
+            </tr>
+            <tr>
+                <td>Deskripsi</td>
+                <td>
+                    <input type="text" th:value="*{deskripsi}" name="deskripsi">
+                </td>
+            </tr>
+            <tr>
+                <td>Gaji Pokok</td>
+                <td>
+                    <input type="number" th:value="*{gajiPokok}"  name="gajiPokok">
+                </td>
+            </tr>
+        </table>
+        <button type="submit">Simpan</button>
+    </form>
+</body>
+</html>

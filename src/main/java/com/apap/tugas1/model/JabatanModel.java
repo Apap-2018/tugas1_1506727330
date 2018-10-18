@@ -50,6 +50,10 @@ public class JabatanModel {
     @Column(name = "deskripsi", nullable = false)
     private String deskripsi;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @NotNull
     @Column(name = "gaji_pokok", nullable = false)
     private Double gajiPokok;
