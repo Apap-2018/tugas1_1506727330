@@ -1,6 +1,8 @@
 package com.apap.tugas1.controller;
 
 import com.apap.tugas1.model.JabatanModel;
+import com.apap.tugas1.model.JabatanPegawaiModel;
+import com.apap.tugas1.service.JabatanPegawaiService;
 import com.apap.tugas1.service.JabatanService;
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import org.thymeleaf.templateparser.text.CSSTemplateParser;
 public class JabatanController {
     @Autowired
     private JabatanService jabatanService;
+
+    @Autowired
+    private JabatanPegawaiService jabatanPegawaiService;
 
     @RequestMapping(value = "/jabatan/tambah", method = RequestMethod.GET)
     private String index(Model model){
@@ -51,8 +56,6 @@ public class JabatanController {
 
     @RequestMapping(value = "/jabatan/ubah", method = RequestMethod.POST)
     private String updateJabatan(@ModelAttribute JabatanModel jabatan, Model model){
-        System.out.println(jabatan.getNama());
-        System.out.println(jabatan.getId());
         JabatanModel jabatanNow = jabatanService.getJabatanById(jabatan.getId()).get();
         jabatanNow.setNama(jabatan.getNama());
         jabatanNow.setDeskripsi(jabatan.getDeskripsi());
@@ -60,5 +63,17 @@ public class JabatanController {
         jabatanService.addJabatan(jabatan);
 
         return "update";
+    }
+
+    @RequestMapping(value = "/jabatan/hapus", method = RequestMethod.POST)
+    private String deleteJabatan(@ModelAttribute JabatanModel jabatan, Model model){
+        JabatanModel jabatanNow = jabatanService.getJabatanById(jabatan.getId()).get();
+        System.out.println(jabatanPegawaiService.getJabatanPegawai(jabatan.getId()));
+        if (jabatanPegawaiService.getJabatanPegawai(jabatan.getId()).isPresent()){
+            return "delete-failed";
+        }
+        jabatanService.deleteJabatan(jabatanNow);
+
+        return "delete";
     }
 }

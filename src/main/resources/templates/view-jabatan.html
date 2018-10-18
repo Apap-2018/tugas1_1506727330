@@ -24,5 +24,9 @@
         <input type="hidden" th:value="*{id}" name="idJabatan">
         <button type="submit">Ubah</button>
     </form>
+    <form th:action="@{/jabatan/hapus}" th:object="${jabatan}" method="POST">
+        <input type="hidden" th:value="*{id}" name="id">
+        <button type="submit">Hapus</button>
+    </form>
 </body>
 </html>
