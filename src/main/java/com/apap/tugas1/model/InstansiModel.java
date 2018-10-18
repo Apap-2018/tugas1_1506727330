@@ -1,5 +1,6 @@
 package com.apap.tugas1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -10,6 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "instansi")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class InstansiModel implements Serializable {
 
     @Id
