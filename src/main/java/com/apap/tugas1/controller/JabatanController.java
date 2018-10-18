@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.templateparser.text.CSSTemplateParser;
 
 @Controller
@@ -30,5 +31,13 @@ public class JabatanController {
         jabatanService.addJabatan(jabatan);
 
         return "tambah";
+    }
+
+    @RequestMapping(value = "/jabatan/view", method = RequestMethod.GET)
+    private String viewJabatan(@RequestParam(value = "idJabatan") String idJabatan, Model model){
+        long idJabatanLong = Long.parseLong(idJabatan);
+        JabatanModel jabatan =  jabatanService.getJabatanById(idJabatanLong).get();
+        model.addAttribute("jabatan", jabatan);
+        return "view-jabatan";
     }
 }

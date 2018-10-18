@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>View Jabatan</title>
+</head>
+<body>
+    <h1 th:text="'Detail Jabatan ' + ${jabatan.nama}"></h1>
+    <table>
+        <tr>
+            <td>Nama</td>
+            <td th:text="${jabatan.nama}"></td>
+        </tr>
+        <tr>
+            <td>Deskripsi</td>
+            <td th:text="${jabatan.deskripsi}"></td>
+        </tr>
+        <tr>
+            <td>Gaji Pokok</td>
+            <td th:text="${jabatan.gajiPokok}"></td>
+        </tr>
+    </table>
+</body>
+</html>

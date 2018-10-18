@@ -35,11 +35,6 @@ public class PegawaiController {
     @Autowired
     private JabatanService jabatanService;
 
-    @RequestMapping(value = "/")
-    private String index(Model model){
-        return "index";
-    }
-
     @RequestMapping(value = "/pegawai",method = RequestMethod.GET)
     private String getPegawai(@RequestParam(value = "nip") String nipPegawai, Model model){
         PegawaiModel pegawai = pegawaiService.getPegawaiDetailByNip(nipPegawai).get();

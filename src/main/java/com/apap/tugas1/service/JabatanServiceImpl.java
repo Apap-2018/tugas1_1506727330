@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -23,5 +24,10 @@ public class JabatanServiceImpl implements JabatanService{
     @Override
     public void addJabatan(JabatanModel jabatan){
         jabatanDb.save(jabatan);
+    }
+
+    @Override
+    public Optional<JabatanModel> getJabatanById(long idJabatan){
+        return jabatanDb.findById(idJabatan);
     }
 }
