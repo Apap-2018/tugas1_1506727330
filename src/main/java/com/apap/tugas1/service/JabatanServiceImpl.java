@@ -19,4 +19,9 @@ public class JabatanServiceImpl implements JabatanService{
     public List<JabatanModel> getAllJabatan(){
         return jabatanDb.findAll();
     }
+
+    @Override
+    public void addJabatan(JabatanModel jabatan){
+        jabatanDb.save(jabatan);
+    }
 }

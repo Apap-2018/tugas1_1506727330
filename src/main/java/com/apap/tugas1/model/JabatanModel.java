@@ -12,6 +12,18 @@ public class JabatanModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public void setGajiPokok(Double gajiPokok) {
+        this.gajiPokok = gajiPokok;
+    }
+
     @NotNull
     @Size(max = 255)
     @Column(name = "nama", nullable = false)
