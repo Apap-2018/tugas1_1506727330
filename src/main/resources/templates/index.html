@@ -26,5 +26,17 @@
         </select>
         <button type="submit">Lihat</button>
     </form>
+
+    <hr>
+
+    <h1>Lihat Pegawai Termuda dan Tertua</h1>
+    <p>Pilih Instansi</p>
+    <form th:action="@{/pegawai/termuda-tertua}" method="GET">
+        <select name="idInstansi">
+            <option th:each="i : ${listOfInstansi}" th:value="${i.id}" th:text="${i.nama} + ' - ' + ${i.provinsi.nama}">
+            </option>
+        </select>
+        <button type="submit">Lihat</button>
+    </form>
 </body>
 </html>

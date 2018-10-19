@@ -30,4 +30,10 @@ public class PegawaiServiceImpl implements  PegawaiService{
     public List<PegawaiModel> getAllPegawai(){
         return pegawaiDb.findAll();
     }
+
+    @Override
+    public List<PegawaiModel> getAllPegawaiByIdInstansi(long idInstansi){
+        return pegawaiDb.findAllByInstansiId(idInstansi);
+    }
+
 }

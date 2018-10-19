@@ -69,4 +69,22 @@ public class PegawaiController {
             @RequestParam(value = "namaProvinsi", required = true) String namaProvinsi) {
         return instansiService.getInstansiByProvinsi(namaProvinsi).get();
     }
+
+    @RequestMapping(value = "/pegawai/termuda-tertua",method = RequestMethod.GET)
+    private String viewYoungestAndOldestPegawai(@RequestParam(value = "idInstansi")String idInstansi, Model model){
+        long idInstansiLong = Long.parseLong(idInstansi);
+        List<PegawaiModel> filteredInstansiPegawai = pegawaiService.getAllPegawaiByIdInstansi(idInstansiLong);
+        filteredInstansiPegawai.sort(
+                (pegawai1, pegawai2) -> {return pegawai1.getTanggalLahir().compareTo(pegawai2.getTanggalLahir());}
+        );
+        PegawaiModel youngestPegawai = filteredInstansiPegawai.get(filteredInstansiPegawai.size()-1);
+        PegawaiModel oldestPegawai = filteredInstansiPegawai.get(0);
+        List<JabatanPegawaiModel> listOfYoungestJabatan = jabatanPegawaiService.getJabatanByNip(youngestPegawai.getNip()).get();
+        List<JabatanPegawaiModel> listOfOldestJabatan = jabatanPegawaiService.getJabatanByNip(oldestPegawai.getNip()).get();
+        model.addAttribute("youngestPegawai",youngestPegawai);
+        model.addAttribute("oldestPegawai",oldestPegawai);
+        model.addAttribute("listOfYoungestJabatanPegawai",listOfYoungestJabatan);
+        model.addAttribute("listOfOldestJabatanPegawai",listOfOldestJabatan);
+        return "youngest-oldest-pegawai";
+    }
 }
