@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.thymeleaf.templateparser.text.CSSTemplateParser;
 
+import java.util.List;
+
 @Controller
 public class JabatanController {
     @Autowired
@@ -75,5 +77,12 @@ public class JabatanController {
         jabatanService.deleteJabatan(jabatanNow);
 
         return "delete";
+    }
+
+    @RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)
+    private String viewAllJabatan(Model model){
+        List<JabatanModel> listOfJabatan = jabatanService.getAllJabatan();
+        model.addAttribute("listOfJabatan",listOfJabatan);
+        return "view-all-jabatan";
     }
 }

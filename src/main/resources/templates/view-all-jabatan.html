@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>All Jabatan</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Nama</th>
+            <th>Deskripsi</th>
+            <th>Gaji Pokok</th>
+        </tr>
+        <tr th:each="jabatan : ${listOfJabatan}">
+            <td th:text="${jabatan.nama}"></td>
+            <td th:text="${jabatan.deskripsi}"></td>
+            <td th:text="${jabatan.gajiPokok}"></td>
+        </tr>
+    </table>
+</body>
+</html>
