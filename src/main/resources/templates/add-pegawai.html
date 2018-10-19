@@ -21,10 +21,13 @@
             <option th:each="i : ${listOfInstansi}" th:value="${i.nama}" th:text="${i.nama}">
             </option>
         </select>
-        <select id="jabatan" name="Jabatan">
-            <option th:each="i : ${listOfJabatan}" th:value="${i.nama}" th:text="${i.nama}">
-            </option>
-        </select>
+        <div class="jabatans" id="jabatan">
+            <select id="jabatan1" name="Jabatan">
+                <option th:each="i : ${listOfJabatan}" th:value="${i.nama}" th:text="${i.nama}">
+                </option>
+            </select>
+        </div>
+        <button type="button" id="tambahJabatanButton">Tambah Jabatan</button>
         <button type="submit">Simpan</button>
     </form>
 </body>

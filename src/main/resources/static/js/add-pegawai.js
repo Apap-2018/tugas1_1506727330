@@ -15,5 +15,9 @@ $(document).ready(function() {
                 $('#namaInstansi').html(html);
             });
         });
-
+    var idJabatan = 2;
+    $('#tambahJabatanButton').click(function () {
+        $('#jabatan1').clone().attr("id","jabatan"+idJabatan).appendTo('.jabatans');
+        idJabatan+=1;
+    });
 });
