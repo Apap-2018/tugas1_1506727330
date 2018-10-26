@@ -9,6 +9,18 @@ import javax.persistence.*;
 @Table(name = "jabatan_pegawai")
 public class JabatanPegawaiModel {
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setPegawai(PegawaiModel pegawai) {
+        this.pegawai = pegawai;
+    }
+
+    public void setJabatan(JabatanModel jabatan) {
+        this.jabatan = jabatan;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

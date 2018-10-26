@@ -17,13 +17,13 @@
             <option th:each="i : ${listOfProvinsi}" th:value="${i.nama}" th:text="${i.nama}">
             </option>
         </select>
-        <select id="namaInstansi" name="Nama Instansi">
-            <option th:each="i : ${listOfInstansi}" th:value="${i.nama}" th:text="${i.nama}">
+        <select id="namaInstansi" name="instansi">
+            <option th:each="i : ${listOfInstansi}" th:value="${i.id}" th:text="${i.nama}">
             </option>
         </select>
         <div class="jabatans" id="jabatan">
-            <select id="jabatan1" name="Jabatan">
-                <option th:each="i : ${listOfJabatan}" th:value="${i.nama}" th:text="${i.nama}">
+            <select id="jabatan0" name="jabatanPegawaiModelList[0].jabatan">
+                <option th:each="i : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}">
                 </option>
             </select>
         </div>

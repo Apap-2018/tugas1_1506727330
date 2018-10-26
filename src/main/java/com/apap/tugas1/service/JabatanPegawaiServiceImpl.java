@@ -27,4 +27,9 @@ public class JabatanPegawaiServiceImpl implements  JabatanPegawaiService{
     public Optional<List<JabatanPegawaiModel>> getJabatanPegawai(long idJabatan){
         return jabatanPegawaiDb.findJabatanPegawaiModelByJabatanId(idJabatan);
     }
+
+    @Override
+    public void addJabatanPegawai(JabatanPegawaiModel jabatanPegawai){
+        jabatanPegawaiDb.save(jabatanPegawai);
+    }
 }

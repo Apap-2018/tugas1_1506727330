@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface JabatanPegawaiService{
     Optional<List<JabatanPegawaiModel>> getJabatanByNip(String nip);
     Optional<List<JabatanPegawaiModel>> getJabatanPegawai(long idJabatan);
+
+    void addJabatanPegawai(JabatanPegawaiModel jabatanPegawai);
 }

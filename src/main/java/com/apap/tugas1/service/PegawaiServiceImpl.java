@@ -36,4 +36,8 @@ public class PegawaiServiceImpl implements  PegawaiService{
         return pegawaiDb.findAllByInstansiId(idInstansi);
     }
 
+    @Override
+    public List<PegawaiModel> getAllByInstansiAndTahunMasukAndTanggalLahir(PegawaiModel pegawai){
+        return pegawaiDb.findAllByInstansiAndTahunMasukAndTanggalLahir(pegawai.getInstansi(), pegawai.getTahunMasuk(), pegawai.getTanggalLahir());
+    }
 }

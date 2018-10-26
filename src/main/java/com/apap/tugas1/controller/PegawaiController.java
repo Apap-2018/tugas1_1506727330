@@ -10,11 +10,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -61,6 +59,37 @@ public class PegawaiController {
         model.addAttribute("listOfInstansi", instansiService.getInstansiByProvinsi("ACEH").get());
         model.addAttribute("listOfJabatan", jabatanService.getAllJabatan());
         return "add-pegawai";
+    }
+
+    @RequestMapping(value = "/pegawai/tambah", method = RequestMethod.POST)
+    private String submitAddPegawai(@ModelAttribute PegawaiModel pegawai, Model model){
+        String kodeInstansi = String.valueOf(pegawai.getInstansi().getId());
+
+        String tanggalLahir = pegawai.getTanggalLahir().toString();
+        String hariLahir = tanggalLahir.substring(8,10);
+        String bulanLahir = tanggalLahir.substring(5,7);
+        String tahunLahir = tanggalLahir.substring(2,4);
+        tanggalLahir = hariLahir+bulanLahir+tahunLahir;
+
+        String tahunBekerja = pegawai.getTahunMasuk();
+
+        int jumlahPegawaiSama = pegawaiService.getAllByInstansiAndTahunMasukAndTanggalLahir(pegawai).size();
+        int urutan = jumlahPegawaiSama+1;
+        String kodeUrut = "";
+        if (urutan/10 < 1){
+            kodeUrut = "0"+ urutan;
+        }
+        else {
+            kodeUrut = String.valueOf(urutan);
+        }
+        pegawai.setNip(kodeInstansi + tanggalLahir + tahunBekerja + kodeUrut);
+        System.out.println(pegawaiService.getAllByInstansiAndTahunMasukAndTanggalLahir(pegawai).size());
+        pegawaiService.addPegawai(pegawai);
+        for (JabatanPegawaiModel jabatanPegawai : pegawai.getJabatanPegawaiModelList()) {
+            jabatanPegawai.setPegawai(pegawai);
+            jabatanPegawaiService.addJabatanPegawai(jabatanPegawai);
+        }
+        return "tambah";
     }
 
     @RequestMapping(value = "/instansi", method = RequestMethod.GET)

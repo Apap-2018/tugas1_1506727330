@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 
 @Entity
@@ -74,4 +75,43 @@ public class PegawaiModel implements Serializable {
     @JoinColumn(name = "id_instansi",referencedColumnName = "id", nullable = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private InstansiModel instansi;
+
+    @OneToMany(mappedBy = "pegawai",fetch = FetchType.LAZY)
+    private List<JabatanPegawaiModel> jabatanPegawaiModelList;
+
+    public List<JabatanPegawaiModel> getJabatanPegawaiModelList() {
+        return jabatanPegawaiModelList;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setTempatLahir(String tempatLahir) {
+        this.tempatLahir = tempatLahir;
+    }
+
+    public void setTanggalLahir(Date tanggalLahir) {
+        this.tanggalLahir = tanggalLahir;
+    }
+
+    public void setTahunMasuk(String tahunMasuk) {
+        this.tahunMasuk = tahunMasuk;
+    }
+
+    public void setInstansi(InstansiModel instansi) {
+        this.instansi = instansi;
+    }
+
+    public void setJabatanPegawaiModelList(List<JabatanPegawaiModel> jabatanPegawaiModelList) {
+        this.jabatanPegawaiModelList = jabatanPegawaiModelList;
+    }
 }

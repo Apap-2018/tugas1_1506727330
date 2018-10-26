@@ -3,6 +3,7 @@ package com.apap.tugas1.model;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "jabatan")
@@ -57,4 +58,15 @@ public class JabatanModel {
     @NotNull
     @Column(name = "gaji_pokok", nullable = false)
     private Double gajiPokok;
+
+    @OneToMany(mappedBy = "jabatan", fetch = FetchType.LAZY)
+    private List<JabatanPegawaiModel> jabatanPegawaiModelList;
+
+    public List<JabatanPegawaiModel> getJabatanPegawaiModelList() {
+        return jabatanPegawaiModelList;
+    }
+
+    public void setJabatanPegawaiModelList(List<JabatanPegawaiModel> jabatanPegawaiModelList) {
+        this.jabatanPegawaiModelList = jabatanPegawaiModelList;
+    }
 }

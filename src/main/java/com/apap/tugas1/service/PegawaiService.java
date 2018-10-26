@@ -11,4 +11,6 @@ public interface PegawaiService {
     List<PegawaiModel> getAllPegawai();
 
     List<PegawaiModel> getAllPegawaiByIdInstansi(long idInstansiLong);
+
+    List<PegawaiModel> getAllByInstansiAndTahunMasukAndTanggalLahir(PegawaiModel pegawai);
 }
