@@ -89,7 +89,7 @@ public class PegawaiController {
             jabatanPegawai.setPegawai(pegawai);
             jabatanPegawaiService.addJabatanPegawai(jabatanPegawai);
         }
-        return "tambah";
+        return "redirect:http://localhost:8080/pegawai?nip="+pegawai.getNip();
     }
 
     @RequestMapping(value = "/instansi", method = RequestMethod.GET)
