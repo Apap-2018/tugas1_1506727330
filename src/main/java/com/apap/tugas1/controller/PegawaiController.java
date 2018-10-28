@@ -116,4 +116,16 @@ public class PegawaiController {
         model.addAttribute("listOfOldestJabatanPegawai",listOfOldestJabatan);
         return "youngest-oldest-pegawai";
     }
+
+    @RequestMapping(value = "/pegawai/ubah", method = RequestMethod.GET)
+    private String addPegawai(@RequestParam(value = "nip") String nip,Model model){
+        PegawaiModel pegawai = pegawaiService.getPegawaiDetailByNip(nip).get();
+        model.addAttribute("pegawai", pegawai);
+        model.addAttribute("listOfProvinsi", provinsiService.getAllProvince());
+        model.addAttribute("listOfInstansi", instansiService.getAllInstansi());
+        model.addAttribute("listOfJabatan", jabatanService.getAllJabatan());
+        return "update-pegawai";
+    }
+
+
 }

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Pegawai</title>
+    <script th:src="@{/js/jquery-3.3.1.min.js}" type="text/javascript" language="JavaScript"></script>
+</head>
+<body>
+<h2>Ubah Pegawai</h2>
+    <form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="POST">
+        <input type="hidden" name="nip" th:value="*{nip}"/>
+        <input type="text" name="nama" th:value="*{nama}"/>
+        <input type="text" name="tempatLahir" th:value="*{tempatLahir}"/>
+        <input type="date" name="tanggalLahir" th:value="*{tanggalLahir}"/>
+        <input type="number" name="tahunMasuk" th:value="*{tahunMasuk}"/>
+        <select id="provinsi" name="Provinsi">
+            <option th:each="i : ${listOfProvinsi}" th:value="${i.nama}" th:text="${i.nama}" th:selected="${pegawai.instansi.provinsi.id==i.id}">
+            </option>
+        </select>
+        <select id="namaInstansi" name="instansi">
+            <option th:each="i : ${listOfInstansi}" th:value="${i.id}" th:text="${i.nama}" th:selected="${pegawai.instansi.id==i.id}">
+            </option>
+        </select>
+        <div class="jabatans" id="jabatan">
+            <select th:each="jabatanPegawai, stat : *{jabatanPegawaiModelList}" th:name="'jabatanPegawaiModelList['+${stat.index}+'].jabatan'" th:id="'jabatan'+${stat.index}">
+                <option th:each="i, istat : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}" th:selected="${i.id=pegawai.jabatanPegawaiModelList[0].jabatan.id}">
+                </option>
+            </select>
+        </div>
+        <button type="button" id="tambahJabatanButton">Tambah Jabatan</button>
+        <button type="submit">Simpan</button>
+    </form>
+<script th:inline="javascript">
+
+    $(document).ready(function() {
+        loadInstansi();
+        $('#provinsi').change(function () {
+            loadInstansi();
+        });
+        var idJabatan = /*[[${#lists.size(pegawai.jabatanPegawaiModelList)}]]*/1;
+        $('#tambahJabatanButton').click(function () {
+            $('#jabatan0').clone().attr("id","jabatan"+idJabatan).attr("name","jabatanPegawaiModelList["+idJabatan+"].jabatan").appendTo('.jabatans');
+            console.log(idJabatan);
+            idJabatan+=1;
+        });
+    });
+    function loadInstansi() {
+        $.getJSON("http://localhost:8080/instansi", {
+            namaProvinsi : $('#provinsi').val(),
+            ajax : 'true'
+        }, function(data) {
+            console.log(data);
+            var html = '';
+            var len = data.length;
+            var selected = /*[[${pegawai.instansi.id}]]*/'';
+            for ( var i = 0; i < len; i++) {
+                html += '<option value="' + data[i].id + '" selected="'+ (selected==data[i].id) +'">'
+                    + data[i].nama + '</option>';
+            }
+            html += '</option>';
+            $('#namaInstansi').html(html);
+        });
+    }
+</script>
+</body>
+</html>
