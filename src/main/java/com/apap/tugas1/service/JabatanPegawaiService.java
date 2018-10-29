@@ -11,4 +11,6 @@ public interface JabatanPegawaiService{
     Optional<List<JabatanPegawaiModel>> getJabatanPegawai(long idJabatan);
 
     void addJabatanPegawai(JabatanPegawaiModel jabatanPegawai);
+
+    void deleteJabatanPegawai(JabatanPegawaiModel jabatanPegawai);
 }

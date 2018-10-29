@@ -8,6 +8,7 @@
 <body>
 <h2>Ubah Pegawai</h2>
     <form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="POST">
+        <input type="hidden" name="id" th:value="*{id}">
         <input type="hidden" name="nip" th:value="*{nip}"/>
         <input type="text" name="nama" th:value="*{nama}"/>
         <input type="text" name="tempatLahir" th:value="*{tempatLahir}"/>
@@ -23,7 +24,7 @@
         </select>
         <div class="jabatans" id="jabatan">
             <select th:each="jabatanPegawai, stat : *{jabatanPegawaiModelList}" th:name="'jabatanPegawaiModelList['+${stat.index}+'].jabatan'" th:id="'jabatan'+${stat.index}">
-                <option th:each="i, istat : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}" th:selected="${i.id=pegawai.jabatanPegawaiModelList[0].jabatan.id}">
+                <option th:each="i, istat : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}" th:selected="${i.id==jabatanPegawai.jabatan.id}">
                 </option>
             </select>
         </div>
@@ -53,7 +54,7 @@
             var html = '';
             var len = data.length;
             var selected = /*[[${pegawai.instansi.id}]]*/'';
-            for ( var i = 0; i < len; i++) {
+            for ( var i = 1; i < len+1; i++) {
                 html += '<option value="' + data[i].id + '" selected="'+ (selected==data[i].id) +'">'
                     + data[i].nama + '</option>';
             }

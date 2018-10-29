@@ -32,4 +32,9 @@ public class JabatanPegawaiServiceImpl implements  JabatanPegawaiService{
     public void addJabatanPegawai(JabatanPegawaiModel jabatanPegawai){
         jabatanPegawaiDb.save(jabatanPegawai);
     }
+
+    @Override
+    public void deleteJabatanPegawai(JabatanPegawaiModel jabatanPegawaiModel){
+        jabatanPegawaiDb.delete(jabatanPegawaiModel);
+    }
 }

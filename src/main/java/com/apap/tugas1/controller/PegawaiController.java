@@ -127,5 +127,60 @@ public class PegawaiController {
         return "update-pegawai";
     }
 
+    @RequestMapping(value = "/pegawai/ubah", method = RequestMethod.POST)
+    private String submitAddPegawai(@ModelAttribute(value = "pegawai") PegawaiModel updatedPegawai){
+        PegawaiModel pegawai = pegawaiService.getPegawaiDetailByNip(updatedPegawai.getNip()).get();
 
+        for (JabatanPegawaiModel jabatanPegawai: pegawai.getJabatanPegawaiModelList()) {
+            jabatanPegawai.setPegawai(pegawai);
+            jabatanPegawaiService.deleteJabatanPegawai(jabatanPegawai);
+        }
+        System.out.println(pegawai.getInstansi().getId());
+        System.out.println(updatedPegawai.getInstansi().getId());
+        if (pegawai.getInstansi().getId() == updatedPegawai.getInstansi().getId()
+            && pegawai.getTanggalLahir().equals(updatedPegawai.getTanggalLahir())
+            && pegawai.getTahunMasuk().equals(updatedPegawai.getTahunMasuk())){
+//            DO NOTHING
+            System.out.println("DO NOTHING\n\n\n");
+        }else {
+            String kodeInstansi = String.valueOf(updatedPegawai.getInstansi().getId());
+
+            String tanggalLahir = updatedPegawai.getTanggalLahir().toString();
+            String hariLahir = tanggalLahir.substring(8,10);
+            String bulanLahir = tanggalLahir.substring(5,7);
+            String tahunLahir = tanggalLahir.substring(2,4);
+            tanggalLahir = hariLahir+bulanLahir+tahunLahir;
+
+            String tahunBekerja = updatedPegawai.getTahunMasuk();
+
+            int jumlahPegawaiSama = pegawaiService.getAllByInstansiAndTahunMasukAndTanggalLahir(pegawai).size();
+            int urutan = jumlahPegawaiSama+1;
+            String kodeUrut = "";
+            if (urutan/10 < 1){
+                kodeUrut = "0"+ urutan;
+            }
+            else {
+                kodeUrut = String.valueOf(urutan);
+            }
+            pegawai.setNip(kodeInstansi + tanggalLahir + tahunBekerja + kodeUrut);
+        }
+        pegawai.setTempatLahir(updatedPegawai.getTempatLahir());
+        pegawai.setTanggalLahir(updatedPegawai.getTanggalLahir());
+        pegawai.setTahunMasuk(updatedPegawai.getTahunMasuk());
+        pegawai.setNama(updatedPegawai.getNama());
+        pegawai.setInstansi(updatedPegawai.getInstansi());
+
+        System.out.println(pegawai.getNip());
+        for (JabatanPegawaiModel jabatanPegawai: updatedPegawai.getJabatanPegawaiModelList()) {
+            jabatanPegawai.setPegawai(pegawai);
+            System.out.println(jabatanPegawai.getJabatan().getId());
+        }
+
+        pegawai.setJabatanPegawaiModelList(updatedPegawai.getJabatanPegawaiModelList());
+        for (JabatanPegawaiModel jabatanPegawai: pegawai.getJabatanPegawaiModelList()) {
+            jabatanPegawaiService.addJabatanPegawai(jabatanPegawai);
+        }
+        pegawaiService.addPegawai(pegawai);
+        return "update";
+    }
 }
