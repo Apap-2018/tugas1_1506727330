@@ -3,48 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Detail Pegawai</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <h2 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h2>
-    <table>
-        <tr>
-            <td>NIP</td>
-            <td th:text="${pegawai.nip}"></td>
-        </tr>
-        <tr>
-            <td>Nama</td>
-            <td th:text="${pegawai.nama}"></td>
-        </tr>
-        <tr>
-            <td>Tempat Lahir</td>
-            <td th:text="${pegawai.tempatLahir}"></td>
-        </tr>
-        <tr>
-            <td>Tanggal Lahir</td>
-            <td th:text="${pegawai.tanggalLahir}"></td>
-        </tr>
-        <tr>
-            <td>Tahun Masuk</td>
-            <td th:text="${pegawai.tahunMasuk}"></td>
-        </tr>
-        <tr>
-            <td>Nama Instansi</td>
-            <td th:text="${pegawai.instansi.nama}+' - '+${pegawai.instansi.provinsi.nama}"></td>
-        </tr>
-        <tr >
-            <td>Jabatan</td>
-            <td >
-                <ul>
-                    <li th:each="jabatanPegawai : ${listJabatanPegawai}">
-                        <span th:text="${jabatanPegawai.jabatan.nama}"></span>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td>Gaji</td>
-            <td th:text="'Rp'+${gaji}"></td>
-        </tr>
-    </table>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <h2 th:text="'Lihat Data Pegawai - ' + ${pegawai.nip}"></h2>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-4">NIP</div>
+                    <div class="col-8"><span th:text="${pegawai.nip}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Nama</div>
+                    <div class="col-8"><span th:text="${pegawai.nama}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Tempat Lahir</div>
+                    <div class="col-8"><span th:text="${pegawai.tempatLahir}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Tanggal Lahir</div>
+                    <div class="col-8"><span th:text="${pegawai.tanggalLahir}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Tahun Masuk</div>
+                    <div class="col-8"><span th:text="${pegawai.tahunMasuk}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Nama Instansi</div>
+                    <div class="col-8"><span th:text="${pegawai.instansi.nama}+' - '+${pegawai.instansi.provinsi.nama}"></span></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Jabatan</div>
+                    <div class="col-8">
+                        <ul>
+                            <li th:each="jabatanPegawai : ${listJabatanPegawai}">
+                                <span th:text="${jabatanPegawai.jabatan.nama}"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Gaji</div>
+                    <div class="col-8"><span th:text="'Rp'+${gaji}"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
