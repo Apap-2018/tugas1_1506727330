@@ -3,40 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <title>Index</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <h3>Sistem Informasi Kepegawaian</h3>
-    <p>Selamat datang di Sistem Informasi Kepegawaian</p>
-    <hr>
-    <h1>Lihat Data Pegawai Berdasarkan NIP</h1>
-    <p>Masukkan Nomor Induk Pegawai</p>
-    <form th:action="@{/pegawai}" method="GET">
-        <input type="text" name="nip"/>
-        <button type="submit">Lihat</button>
-    </form>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <br>
+    <div class="container-fluid">
+        <h3>Sistem Informasi Kepegawaian</h3>
+        <p>Selamat datang di Sistem Informasi Kepegawaian</p>
+        <hr>
 
-    <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Lihat Data Pegawai Berdasarkan NIP
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Masukkan Nomor Induk Pegawai</p>
+                        <form th:action="@{/pegawai}" method="GET">
+                            <input type="text" name="nip"/>
+                            <button class="btn btn-primary" type="submit">Lihat</button>
+                        </form>
 
-    <h1>Lihat Detail Jabatan</h1>
-    <p>Pilih Jabatan</p>
-    <form th:action="@{/jabatan/view}"method="GET">
-        <select name="idJabatan" id="listOfJabatan">
-            <option th:each="i : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}">
-            </option>
-        </select>
-        <button type="submit">Lihat</button>
-    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Lihat Detail Jabatan
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Pilih Jabatan</p>
+                        <form th:action="@{/jabatan/view}"method="GET">
+                            <div class="form-group">
+                            <select class="form-control" name="idJabatan" id="listOfJabatan">
+                                <option th:each="i : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}">
+                                </option>
+                            </select>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Lihat</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
 
-    <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        Lihat Pegawai Termuda dan Tertua
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">Pilih Instansi</p>
+                        <form th:action="@{/pegawai/termuda-tertua}" method="GET">
+                            <div class="form-group">
 
-    <h1>Lihat Pegawai Termuda dan Tertua</h1>
-    <p>Pilih Instansi</p>
-    <form th:action="@{/pegawai/termuda-tertua}" method="GET">
-        <select name="idInstansi">
-            <option th:each="i : ${listOfInstansi}" th:value="${i.id}" th:text="${i.nama} + ' - ' + ${i.provinsi.nama}">
-            </option>
-        </select>
-        <button type="submit">Lihat</button>
-    </form>
+                            <select class="form-control" name="idInstansi">
+                                <option th:each="i : ${listOfInstansi}" th:value="${i.id}" th:text="${i.nama} + ' - ' + ${i.provinsi.nama}">
+                                </option>
+                            </select>
+                            </div>
+
+                            <button class="btn btn-primary" type="submit">Lihat</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
 </body>
 </html>
