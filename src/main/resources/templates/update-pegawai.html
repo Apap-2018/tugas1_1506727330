@@ -3,34 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Pegawai</title>
-    <script th:src="@{/js/jquery-3.3.1.min.js}" type="text/javascript" language="JavaScript"></script>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-<h2>Ubah Pegawai</h2>
-    <form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="POST">
-        <input type="hidden" name="id" th:value="*{id}">
-        <input type="hidden" name="nip" th:value="*{nip}"/>
-        <input type="text" name="nama" th:value="*{nama}"/>
-        <input type="text" name="tempatLahir" th:value="*{tempatLahir}"/>
-        <input type="date" name="tanggalLahir" th:value="*{tanggalLahir}"/>
-        <input type="number" name="tahunMasuk" th:value="*{tahunMasuk}"/>
-        <select id="provinsi" name="Provinsi">
-            <option th:each="i : ${listOfProvinsi}" th:value="${i.nama}" th:text="${i.nama}" th:selected="${pegawai.instansi.provinsi.id==i.id}">
-            </option>
-        </select>
-        <select id="namaInstansi" name="instansi">
-            <option th:each="i : ${listOfInstansi}" th:value="${i.id}" th:text="${i.nama}" th:selected="${pegawai.instansi.id==i.id}">
-            </option>
-        </select>
-        <div class="jabatans" id="jabatan">
-            <select th:each="jabatanPegawai, stat : *{jabatanPegawaiModelList}" th:name="'jabatanPegawaiModelList['+${stat.index}+'].jabatan'" th:id="'jabatan'+${stat.index}">
-                <option th:each="i, istat : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}" th:selected="${i.id==jabatanPegawai.jabatan.id}">
-                </option>
-            </select>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header">
+                <h2>Ubah Pegawai</h2>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="POST">
+                    <input type="hidden" name="id" th:value="*{id}">
+                    <input type="hidden" name="nip" th:value="*{nip}"/>
+                        <div class="form-group row">
+                            <label for="inputNama" class="col-sm-2 col-form-label">Nama</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="nama" th:value="*{nama}" class="form-control" id="inputNama" placeholder="Nama">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputTempatLahir" class="col-sm-2 col-form-label">Tempat Lahir</label>
+                            <div class="col-sm-10">
+                                <input type="text" name="tempatLahir" th:value="*{tempatLahir}" class="form-control" id="inputTempatLahir" placeholder="Tempat Lahir">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputTanggalLahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
+                            <div class="col-sm-10">
+                                <input type="date" name="tanggalLahir" th:value="*{tanggalLahir}" class="form-control" id="inputTanggalLahir" placeholder="Tanggal Lahir">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputTahunMasuk" class="col-sm-2 col-form-label">Tahun Masuk</label>
+                            <div class="col-sm-10">
+                                <input type="number" name="tahunMasuk" th:value="*{tahunMasuk}" class="form-control" id="inputTahunMasuk" placeholder="Tahun Masuk">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputProvinsi" class="col-sm-2 col-form-label">Provinsi</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="inputProvinsi" name="provinsi">
+                                    <option th:each="i : ${listOfProvinsi}" th:value="${i.nama}" th:text="${i.nama}" th:selected="${pegawai.instansi.provinsi.id==i.id}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    <div class="form-group row">
+                        <label for="inputInstansi" class="col-sm-2 col-form-label">Instansi</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="inputInstansi" name="instansi">
+                                <option th:each="i : ${listOfInstansi}" th:value="${i.id}" th:text="${i.nama}" th:selected="${pegawai.instansi.id==i.id}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputJabatan" class="col-sm-2 col-form-label">Jabatan</label>
+                        <div class="col-sm-10" id="inputJabatan">
+                            <div class="jabatans" id="jabatan">
+                                <select class="form-control" th:each="jabatanPegawai, stat : *{jabatanPegawaiModelList}" th:name="'jabatanPegawaiModelList['+${stat.index}+'].jabatan'" th:id="'jabatan'+${stat.index}">
+                                    <option th:each="i, istat : ${listOfJabatan}" th:value="${i.id}" th:text="${i.nama}" th:selected="${i.id==jabatanPegawai.jabatan.id}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="button" id="tambahJabatanButton">Tambah Jabatan</button>
+                    <button class="btn btn-primary" type="submit">Simpan</button>
+                </form>
+            </div>
         </div>
-        <button type="button" id="tambahJabatanButton">Tambah Jabatan</button>
-        <button type="submit">Simpan</button>
-    </form>
+    </div>
+
 <script th:inline="javascript">
 
     $(document).ready(function() {
