@@ -53,6 +53,10 @@
                     <div class="col-4">Gaji</div>
                     <div class="col-8"><span th:text="'Rp'+${gaji}"></span></div>
                 </div>
+                <form th:action="@{/pegawai/ubah}" th:object="${pegawai}" method="GET">
+                    <input type="hidden" th:value="*{nip}" name="nip">
+                    <button class="btn btn-primary" type="submit">Ubah</button>
+                </form>
             </div>
         </div>
     </div>
