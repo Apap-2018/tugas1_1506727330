@@ -3,30 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>View Jabatan</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
-    <h1 th:text="'Detail Jabatan ' + ${jabatan.nama}"></h1>
-    <table>
-        <tr>
-            <td>Nama</td>
-            <td th:text="${jabatan.nama}"></td>
-        </tr>
-        <tr>
-            <td>Deskripsi</td>
-            <td th:text="${jabatan.deskripsi}"></td>
-        </tr>
-        <tr>
-            <td>Gaji Pokok</td>
-            <td th:text="${jabatan.gajiPokok}"></td>
-        </tr>
-    </table>
-    <form th:action="@{/jabatan/ubah}" th:object="${jabatan}" method="GET">
-        <input type="hidden" th:value="*{id}" name="idJabatan">
-        <button type="submit">Ubah</button>
-    </form>
-    <form th:action="@{/jabatan/hapus}" th:object="${jabatan}" method="POST">
-        <input type="hidden" th:value="*{id}" name="id">
-        <button type="submit">Hapus</button>
-    </form>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <br>
+        <div class="card">
+            <div class="card-header">
+                <h1 th:text="'Detail Jabatan ' + ${jabatan.nama}"></h1>
+            </div>
+            <div class="card-body">
+                <table>
+                    <tr>
+                        <td>Nama</td>
+                        <td th:text="${jabatan.nama}"></td>
+                    </tr>
+                    <tr>
+                        <td>Deskripsi</td>
+                        <td th:text="${jabatan.deskripsi}"></td>
+                    </tr>
+                    <tr>
+                        <td>Gaji Pokok</td>
+                        <td th:text="${jabatan.gajiPokok}"></td>
+                    </tr>
+                </table>
+                <form th:action="@{/jabatan/ubah}" th:object="${jabatan}" method="GET">
+                    <input type="hidden" th:value="*{id}" name="idJabatan">
+                    <button class="btn btn-primary" type="submit">Ubah</button>
+                </form>
+                <br>
+                <form th:action="@{/jabatan/hapus}" th:object="${jabatan}" method="POST">
+                    <input type="hidden" th:value="*{id}" name="id">
+                    <button class="btn btn-primary" type="submit">Hapus</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
