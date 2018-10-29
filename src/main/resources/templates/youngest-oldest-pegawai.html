@@ -3,147 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <title>Youngest-Oldest-Pegawai</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-6" th:object="${youngestPegawai}">
-                <div class="row">
-                    <div class="col-12">
-                        <h1>Data Pegawai Termuda</h1>
+                <div class="card">
+                    <div class="card-header">
+                         <h1>Data Pegawai Termuda</h1>
                     </div>
-                </div>
-                <div class="row" name="nip">
-                    <div class="col-6">
-                        <span>NIP</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{nip}"></span>
-                    </div>
-                </div>
-                <div class="row" name="nama">
-                    <div class="col-6">
-                        <span>Nama</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{nama}"></span>
-                    </div>
-                </div>
-                <div class="row" name="tempatLahir">
-                    <div class="col-6">
-                        <span>Tempat Lahir</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{tempatLahir}"></span>
-                    </div>
-                </div>
-                <div class="row" name="tanggalLahir">
-                    <div class="col-6">
-                        <span>Tanggal Lahir</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{tanggalLahir}"></span>
-                    </div>
-                </div>
-                <div class="row" name="TahunMasuk">
-                    <div class="col-6">
-                        <span>Tahun Masuk</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{tahunMasuk}"></span>
-                    </div>
-                </div>
-                <div class="row" name="NamaInstansi">
-                    <div class="col-6">
-                        <span>Nama Instansi</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{instansi.nama} + ' - ' + *{instansi.provinsi.nama}" ></span>
-                    </div>
-                </div>
-                <div class="row" name="Jabatan">
-                    <div class="col-6">
-                        <span>Jabatan</span>
-                    </div>
-                    <div class="col-6">
-                        <ul>
-                            <li th:each="jabatanPegawai:${listOfYoungestJabatanPegawai}">
-                                <span th:text="${jabatanPegawai.jabatan.nama}"></span>
-                            </li>
-                        </ul>
+                    <div class="card-body">
+                        <div class="row" name="nip">
+                            <div class="col-6">
+                                <span>NIP</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{nip}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="nama">
+                            <div class="col-6">
+                                <span>Nama</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{nama}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="tempatLahir">
+                            <div class="col-6">
+                                <span>Tempat Lahir</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{tempatLahir}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="tanggalLahir">
+                            <div class="col-6">
+                                <span>Tanggal Lahir</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{tanggalLahir}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="TahunMasuk">
+                            <div class="col-6">
+                                <span>Tahun Masuk</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{tahunMasuk}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="NamaInstansi">
+                            <div class="col-6">
+                                <span>Nama Instansi</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{instansi.nama} + ' - ' + *{instansi.provinsi.nama}" ></span>
+                            </div>
+                        </div>
+                        <div class="row" name="Jabatan">
+                            <div class="col-6">
+                                <span>Jabatan</span>
+                            </div>
+                            <div class="col-6">
+                                <ul>
+                                    <li th:each="jabatanPegawai:${listOfYoungestJabatanPegawai}">
+                                        <span th:text="${jabatanPegawai.jabatan.nama}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-6" th:object="${oldestPegawai}">
-                <div class="row">
-                    <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
                         <h1>Data Pegawai Tertua</h1>
                     </div>
+                    <div class="card-body">
+                        <div class="row" name="nip">
+                            <div class="col-6">
+                                <span>NIP</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{nip}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="nama">
+                            <div class="col-6">
+                                <span>Nama</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{nama}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="tempatLahir">
+                            <div class="col-6">
+                                <span>Tempat Lahir</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{tempatLahir}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="tanggalLahir">
+                            <div class="col-6">
+                                <span>Tanggal Lahir</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{tanggalLahir}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="TahunMasuk">
+                            <div class="col-6">
+                                <span>Tahun Masuk</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{tahunMasuk}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="NamaInstansi">
+                            <div class="col-6">
+                                <span>Nama Instansi</span>
+                            </div>
+                            <div class="col-6">
+                                <span th:text="*{instansi.nama} + ' - ' + *{instansi.provinsi.nama}"></span>
+                            </div>
+                        </div>
+                        <div class="row" name="Jabatan">
+                            <div class="col-6">
+                                <span>Jabatan</span>
+                            </div>
+                            <div class="col-6">
+                                <ul>
+                                    <li th:each="jabatanPegawai:${listOfOldestJabatanPegawai}">
+                                        <span th:text="${jabatanPegawai.jabatan.nama}"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row" name="nip">
-                    <div class="col-6">
-                        <span>NIP</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{nip}"></span>
-                    </div>
-                </div>
-                <div class="row" name="nama">
-                    <div class="col-6">
-                        <span>Nama</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{nama}"></span>
-                    </div>
-                </div>
-                <div class="row" name="tempatLahir">
-                    <div class="col-6">
-                        <span>Tempat Lahir</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{tempatLahir}"></span>
-                    </div>
-                </div>
-                <div class="row" name="tanggalLahir">
-                    <div class="col-6">
-                        <span>Tanggal Lahir</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{tanggalLahir}"></span>
-                    </div>
-                </div>
-                <div class="row" name="TahunMasuk">
-                    <div class="col-6">
-                        <span>Tahun Masuk</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{tahunMasuk}"></span>
-                    </div>
-                </div>
-                <div class="row" name="NamaInstansi">
-                    <div class="col-6">
-                        <span>Nama Instansi</span>
-                    </div>
-                    <div class="col-6">
-                        <span th:text="*{instansi.nama} + ' - ' + *{instansi.provinsi.nama}"></span>
-                    </div>
-                </div>
-                <div class="row" name="Jabatan">
-                    <div class="col-6">
-                        <span>Jabatan</span>
-                    </div>
-                    <div class="col-6">
-                        <ul>
-                            <li th:each="jabatanPegawai:${listOfOldestJabatanPegawai}">
-                                <span th:text="${jabatanPegawai.jabatan.nama}"></span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
